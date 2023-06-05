@@ -10,8 +10,15 @@ class MyApp extends ConsumerWidget {
     return MaterialApp.router(
       title: 'My Portfolio',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+          // Use material 3 with Pink and purple theme
+          colorScheme: const ColorScheme.light(
+            primary: Color(0xFFE91E63),
+            secondary: Color(0xFF9C27B0),
+          ),
+          appBarTheme: const AppBarTheme(
+            backgroundColor: Color(0xFFE91E63),
+          ),
+          useMaterial3: true),
       routerConfig: appRouter.config(),
     );
   }
