@@ -1,0 +1,4 @@
+class MyConstants {
+  static const String welcomeText =
+      "Welcome to my portfolio! I'm a versatile software developer with a passion for creating amazing digital experiences. My skill set spans across various areas, allowing me to tackle diverse projects with confidence. I'm fluent in the elegant world of Angular, where I craft dynamic and responsive web applications. Flutter is my go-to framework for building beautiful, cross-platform mobile apps that captivate users. When it comes to native mobile development, I'm a wizard with Swift, conjuring up enchanting iOS applications, and a maestro with Kotlin, orchestrating delightful experiences on the Android platform. With .NET Core, I've crafted robust and scalable solutions, while my mastery of Node.js allows me to build fast and efficient backend systems. Whether it's crafting pixel-perfect UIs or architecting powerful backend solutions, I'm always ready to embark on exciting coding adventures!";
+}
