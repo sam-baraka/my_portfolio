@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:my_portfolio/const/constants.dart';
 import 'package:my_portfolio/home_page/moving_widgets.dart';
+import 'package:my_portfolio/routes/app_router.gr.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../providers/dark_theme_provider.dart';
@@ -47,7 +48,7 @@ class HomePage extends ConsumerWidget {
                       begin: Alignment.centerRight,
                       end: Alignment.centerLeft,
                       colors: [Colors.transparent, Colors.black],
-                      stops: [0.1, 1.0],
+                      stops: [0.001, 1.0],
                     ).createShader(bounds);
                   },
                   child: AnimatedCrossFade(
@@ -65,26 +66,50 @@ class HomePage extends ConsumerWidget {
                 ),
                 const SizedBox(width: 16),
                 Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Sam Baraka',
-                        style: Theme.of(context).textTheme.headlineMedium,
-                      ),
-                      Text(
-                        'Software Engineer',
-                        style: Theme.of(context).textTheme.titleLarge,
-                      ),
-                      const Text(
-                        MyConstants.welcomeText,
-                        overflow: TextOverflow.clip,
-                        softWrap: true,
-                        maxLines: 5,
-                      ),
-                      Expanded(child: MovingWidgetsScreen())
-                    ],
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SelectableText(
+                          'Samuel Baraka',
+                          style: Theme.of(context).textTheme.headlineLarge,
+                        ),
+                        SelectableText(
+                          'Software Engineer',
+                          style: Theme.of(context).textTheme.headlineMedium,
+                        ),
+                        SelectableText(
+                          MyConstants.welcomeText,
+                          style: Theme.of(context).textTheme.titleLarge,
+                          // overflow: TextOverflow.clip,
+                          // softWrap: true,
+                          maxLines: 5,
+                        ),
+                        const SizedBox(height: 32),
+                        Text(
+                          'My Skills',
+                          style: Theme.of(context).textTheme.headlineSmall,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            AutoRouter.of(context).push(const SkillsRoute());
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              const FlutterLogo(size: 50),
+                              Image.asset('assets/angular.png', width: 50),
+                              Image.asset('assets/c-sharp.png', width: 50),
+                              Image.asset('assets/netcore.png', width: 50),
+                              Image.asset('assets/swift.png', width: 50),
+                              Image.asset('assets/kotlin.png', width: 50),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 )
               ],
@@ -103,13 +128,23 @@ class HomePage extends ConsumerWidget {
                     },
                   ),
                   IconButton(
-                    icon: const FaIcon(FontAwesomeIcons.youtube),
+                    icon: FaIcon(
+                      FontAwesomeIcons.youtube,
+                      color: !ref.watch(darkThemeProvider)
+                          ? const Color(0xFFFF0000)
+                          : null,
+                    ),
                     onPressed: () {
                       launchUrl(Uri.parse(youtubeUrl));
                     },
                   ),
                   IconButton(
-                    icon: const FaIcon(FontAwesomeIcons.linkedin),
+                    icon: FaIcon(
+                      FontAwesomeIcons.linkedin,
+                      color: !ref.watch(darkThemeProvider)
+                          ? const Color(0xFF0077B5)
+                          : null,
+                    ),
                     onPressed: () {
                       launchUrl(Uri.parse(linkedinUrl));
                     },
